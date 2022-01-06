@@ -1,84 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add private section</title>
-    <style>
-    * {
-      box-sizing: border-box;
-    }
+{% extends 'base.html' %}
+{% block title %}Add private section{% endblock %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'add_priv_section_style.css' %}">
 
-    input[type=text], input[type=number], select {
-      width: 60%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      resize: vertical;
-    }
-
-    label {
-      padding: 12px 12px 12px 0;
-      display: inline-block;
-    }
-
-    input[type=submit] {
-      float: right;
-      padding: 5px 15px;
-      border: solid;
-      border-color: #654321;
-      font-size: 1.1em;
-      font-weight: 600;
-      border-radius: 20px;
-      cursor: pointer;
-      float: right;
-    }
-
-    input[type=submit]:hover {
-      background-color: #654320;
-      color: white;
-    }
-
-    .form-container {
-      padding-left: 25%;
-      padding-right: 20%;
-    }
-
-    .col-25 {
-      float: left;
-      width: 25%;
-      margin-top: 6px;
-    }
-
-    .col-75 {
-      float: left;
-      width: 75%;
-      margin-top: 6px;
-    }
-
-    /* Clear floats after the columns */
-    .row:after {
-      content: "";
-      display: table;
-      clear: both;
-    }
-
-    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-    @media screen and (max-width: 600px) {
-      .col-25, .col-75, input[type=submit] {
-        width: 100%;
-        margin-top: 0;
-      }
-    }
-
-</style>
-
-</head>
-<body>
-<center>
-    <h1>Tworzenie odcinka własnego</h1>
-</center>
-
-
+{% block content %}
 <div class="form-container">
   <form action="/...tu-cos-dodaj" method="POST">
       {% csrf_token %}
@@ -203,5 +128,4 @@
 
   </form>
 </div>
-</body>
-</html>
+{% endblock %}
