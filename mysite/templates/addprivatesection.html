@@ -21,8 +21,9 @@
 
         <div class="col-75">
           <select id="mountain_range" name="select_mountain_range">
-            <option value="SUDETY-WSCHODNIE">Sudety Wschodnie</option>
-            <option value="SUDETY-ZACHODNIE">Sudety Zachodnie<option>
+            {% for mountain_range in ranges %}
+            <option id="{{mountain_range.id}}" name="mountainRangeList" value='{{mountain_range.id}}'>{{mountain_range.name}}</option>
+            {% endfor %}
           </select>
         </div>
     </div>

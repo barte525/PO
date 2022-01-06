@@ -8,7 +8,7 @@ from mysite.models.segment import Segment, DefinedSegment, CustomSegment
 
 def insert_all():
     insert_points_to_db()
-    #insert_users_to_db()
+    insert_users_to_db()
     insert_routes_to_db()
     insert_segment_to_db()
 
