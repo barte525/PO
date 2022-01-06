@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Add private section{% endblock %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'add_priv_section_style.css' %}">
+{% block head %}
 
+<link rel=”stylesheet” href="{% static ‘add_priv_section_style.css' %}">
+{% endblock %)
 {% block content %}
 <div class="form-container">
   <form action="/...tu-cos-dodaj" method="POST">
