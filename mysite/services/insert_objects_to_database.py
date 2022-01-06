@@ -29,6 +29,10 @@ def insert_routes_to_db():
 
 def insert_segment_to_db():
     Group(name="Karpaty", country="Poland").save()
-    Range(name="Tatry", country="Poland", group=Group.objects.get(name="Karpaty")).save()
-    Segment(name="odcinek", length=10, range=Range.objects.get(name="Tatry")).save()
-    CustomSegment(elevation=100, start_name="jagodno", end_name="sobieski", start_height=100, end_height=200, segment=Segment.objects.get(name="odcinek")).save()
+    Range(name="Tatry", country="Poland", group=Group.objects.filter(name="Karpaty")[0]).save()
+    Segment(length=10, range=Range.objects.filter(name="Tatry")[0]).save()
+    CustomSegment(elevation=100, start_name="jagodno", end_name="sobieski", start_height=100, end_height=200, segment=Segment.objects.filter(length=10)[0]).save()
+    DefinedSegment(segment=Segment.objects.filter(length=10)[0], points=100, name="try", start_point=Point.objects.filter(name="Murowaniec")[0],
+                   end_point=Point.objects.filter(name="Czarny staw")[0]).save()
+    DefinedSegment(segment=Segment.objects.filter(length=10)[0], points=100, name="try2",
+                   start_point=Point.objects.filter(name="Murowaniec")[0], end_point=Point.objects.filter(name="Czarny staw")[0]).save()
