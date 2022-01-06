@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from mysite.views.MainPageView import MyView, SavePoints, GetPoints
 from mysite.views.add_private_section_view import AddPrivateSection
+from mysite.views.count_points_view import CountPoints
 from django.contrib.auth import views as auth_views
 from mysite.views.profile import ProfileView
 from mysite.views.segment import SegmentView
@@ -28,6 +29,7 @@ urlpatterns = [
     path('get/', GetPoints.as_view()),
     path('login/', auth_views.LoginView.as_view(template_name="login.html")),
     path('add_private_section/', AddPrivateSection.as_view()),
+    path('count_points/', CountPoints.as_view()),
     path('profile/', ProfileView.as_view()),
     path('section/<str:name>', SegmentView.as_view())
 ]

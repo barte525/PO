@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Count points{% endblock %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'form_container_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'count_points_style.css' %}">
+{% endblock %}
+
+{% block above_content %}
+    <h1>Podliczenie zdobytych punktów</h1>
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+      <form method="POST">
+          {% csrf_token %}
+          <div class="row" >
+              <input type="submit" value="Zatwierdź">
+          </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label class="label" for="mountain_range">Pasmo górskie</label>
+            </div>
+
+            <div class="col-75">
+              <select id="mountain_range" name="select_mountain_range">
+                {% for mountain_range in ranges %}
+                <option id="{{mountain_range.id}}" name="mountainRangeList" value='{{mountain_range.id}}'>{{mountain_range.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+        </div>
+      </form>
+    </div>
+{% endblock %}
