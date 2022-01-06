@@ -3,15 +3,34 @@ from mysite.models.user import User, Tourist
 from mysite.models.route import Route
 
 
+
+from mysite.models.range import Range
+from mysite.models.group import Group
+
+
+def insert_all():
+    insert_points_to_db()
+    #insert_users_to_db()
+    insert_routes_to_db()
+    insert_segment_to_db()
+
+
 def insert_points_to_db():
     Point(name='Murowaniec').save()
     Point(name='Czarny staw').save()
 
 
 def insert_users_to_db():
-    bartek = User.objects.create_user(email='bartek@gmail.com', password='Oo', name='Bartek', surname='Nowak')
+   bartek = User.objects.create_user(email='bartek@gmail.com', password='Oo', name='Bartek', surname='Nowak')
     Tourist(birth_date='2000-10-10', user=bartek).save()  # .route_set.all(), zeby dostac trasy turysty
 
 
 def insert_routes_to_db():
     Route(name="moja traska", start_date="2020-10-11", end_date="2020-10-11", tourist=Tourist.objects.all()[0]).save()
+
+
+def insert_segment_to_db():
+    Group(name="Karpaty", country="Poland").save()
+    Range(name="Tatry", country="Poland", group=Group.objects.get(name="Karpaty")).save()
+    Segment(name="odcinek", length=10, range=Range.objects.get(name="Tatry")).save()
+    CustomSegment(elevation=100, start_name="jagodno", end_name="sobieski", start_height=100, end_height=200, segment=Segment.objects.get(name="odcinek")).save()
