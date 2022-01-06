@@ -16,7 +16,7 @@
       {% csrf_token %}
     <div class="row">
         <div class="col-25">
-            <label for="mountain_range">Pasmo górskie</label>
+            <label class="label" for="mountain_range">Pasmo górskie</label>
         </div>
 
         <div class="col-75">
@@ -30,7 +30,7 @@
 
     <div class="row">
         <div class="col-25">
-        <label for="name">Nazwa</label>
+        <label class="label" for="name">Nazwa</label>
         </div>
 
         <div class="col-75">
@@ -40,7 +40,7 @@
 
     <div class="row">
         <div class="col-25">
-            <label for="length">Długość (w metrach)</label>
+            <label class="label" for="length">Długość (w metrach)</label>
         </div>
 
         <div class="col-75">
@@ -51,7 +51,7 @@
 
     <div class="row">
         <div class="col-25">
-            <label for="elevation-gain">Przewyższenie (w metrach)</label>
+            <label class="label" for="elevation-gain">Przewyższenie (w metrach)</label>
         </div>
 
         <div class="col-75">
@@ -63,72 +63,141 @@
     <div class="row">
 
         <div class="col-vertical">
-            <p>Punkt początkowy</p>
+            <p class="label">Punkt początkowy</p>
             <p>Jaki rodzaj punktu wprowadzasz?</p>
 <!--            <label for="start-point">Punkt początkowy</label>-->
         </div>
 
-
         <div class="radio">
             <div>
-                 <input type="radio" id="defined-radio" name="point_type" value="defined_point" checked>
-                <label for="defined-radio">Punkt z listy ustalonych punktów</label>
+                 <input type="radio" id="defined-radio-s-point" name="point_type_s" value="defined_point_s" checked>
+                <label for="defined-radio-s-point">Punkt z listy ustalonych punktów</label>
             </div>
 
             <div>
-                <input type="radio" id="private-radio" name="point_type" value="private_point">
-                <label for="private-radio">Punkt własny</label>
+                <input type="radio" id="private-radio-s-point" name="point_type_s" value="private_point_s">
+                <label for="private-radio-s-point">Punkt własny</label>
             </div>
 
         </div>
 
         <script>
-            document.getElementById("defined-radio").addEventListener("click", function(){
-                document.getElementById('when-defined').style.display = 'initial';
-                document.getElementById('when-private').style.display = 'none';
+            document.getElementById("defined-radio-s-point").addEventListener("click", function(){
+                document.getElementById('defined-s-point').style.display = 'initial';
+                document.getElementById('private-s-point').style.display = 'none';
             }, false);
-            document.getElementById("private-radio").addEventListener("click", function(){
-            document.getElementById('when-private').style.display = 'initial';
-            document.getElementById('when-defined').style.display = 'none';
+            document.getElementById("private-radio-s-point").addEventListener("click", function(){
+            document.getElementById('private-s-point').style.display = 'initial';
+            document.getElementById('defined-s-point').style.display = 'none';
             }, false);
         </script>
 
-        <div id="when-defined">
+        <div id="defined-s-point">
             <div class="row">
                 <div class="col-25">
-                    <label for="starting-point">Punkt</label>
+                    <label for="start-point">Punkt</label>
                 </div>
 
                 <div class="col-75">
-                    <select id="starting-point" name="select_starting_point">
-                        <option value="sniezka">Śnieżka 100m npm</option>
-                        <option value="wielka-sowa">Wielka sowa</option>
+                    <select id="start-point" name="select_start_point">
+                        {% for point in points %}
+                        <option id="{{point.id}}" name="pointList" value='{{point.id}}'>{{point.name}}&nbsp;{{point.height}}m n.p.m.</option>
+                        {% endfor %}
                     </select>
                 </div>
             </div>
         </div>
 
-        <div id="when-private" style="display: none;">
+        <div id="private-s-point" style="display: none;">
             <div class="row">
                  <div class="col-25">
-                    <label for="starting-point-name">Nazwa</label>
+                    <label for="start-point-name">Nazwa</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="starting-point-name" name="input_s_point_name">
+                    <input type="text" id="start-point-name" name="input_s_point_name">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-25">
-                    <label for="starting-point-name">Wysokość n.p.m.</label>
+                    <label for="start-point-name">Wysokość n.p.m.</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="starting-point-height" name="input_s_point_height">
+                    <input type="text" id="start-point-height" name="input_s_point_height">
                 </div>
             </div>
         </div>
     </div>
 
+      <br>
+
+    <div class="row">
+
+        <div class="col-vertical">
+            <p class="label">Punkt końcowy</p>
+            <p>Jaki rodzaj punktu wprowadzasz?</p>
+        </div>
+
+        <div class="radio">
+            <div>
+                 <input type="radio" id="defined-radio-e-point" name="point_type_e" value="defined_point_e" checked>
+                <label for="defined-radio-e-point">Punkt z listy ustalonych punktów</label>
+            </div>
+
+            <div>
+                <input type="radio" id="private-radio-e-point" name="point_type_e" value="private_point_e">
+                <label for="private-radio-s-point">Punkt własny</label>
+            </div>
+
+        </div>
+
+        <script>
+            document.getElementById("defined-radio-e-point").addEventListener("click", function(){
+                document.getElementById('defined-e-point').style.display = 'initial';
+                document.getElementById('private-e-point').style.display = 'none';
+            }, false);
+            document.getElementById("private-radio-e-point").addEventListener("click", function(){
+            document.getElementById('private-e-point').style.display = 'initial';
+            document.getElementById('defined-e-point').style.display = 'none';
+            }, false);
+        </script>
+
+        <div id="defined-e-point">
+            <div class="row">
+                <div class="col-25">
+                    <label for="end-point">Punkt</label>
+                </div>
+
+                <div class="col-75">
+                    <select id="end-point" name="select_end_point">
+                        {% for point2 in points %}
+                        <option id="{{point2.id}}" name="pointList" value='{{point2.id}}'>{{point2.name}}&nbsp;{{point2.height}}m n.p.m.</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="private-e-point" style="display: none;">
+            <div class="row">
+                 <div class="col-25">
+                    <label for="end-point-name">Nazwa</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="end-point-name" name="input_e_point_name">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="end-point-name">Wysokość n.p.m.</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="end-point-height" name="input_e_point_height">
+                </div>
+            </div>
+        </div>
+    </div>
   <br>
   <div class="row">
     <input type="submit" value="Zatwierdź">
