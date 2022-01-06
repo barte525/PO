@@ -15,21 +15,19 @@
     <div class="form-container">
       <form method="POST">
           {% csrf_token %}
-          <div class="row" >
-              <input type="submit" value="Zatwierdź">
+          <div class="row">
+              <input type="submit" value="Podlicz punkty">
           </div>
 
         <div class="row">
-            <div class="col-25">
-                <label class="label" for="mountain_range">Pasmo górskie</label>
+            <div class="col-60">
+                <label class="label" for="points-result-div">Liczba zdobytych przez ciebie puktów wynosi:</label>
             </div>
 
-            <div class="col-75">
-              <select id="mountain_range" name="select_mountain_range">
-                {% for mountain_range in ranges %}
-                <option id="{{mountain_range.id}}" name="mountainRangeList" value='{{mountain_range.id}}'>{{mountain_range.name}}</option>
-                {% endfor %}
-              </select>
+            <div class="col-40">
+              <div id="points-result-div">
+                  <p id="points-result-p">{{points}}</p>
+              </div>
             </div>
         </div>
       </form>

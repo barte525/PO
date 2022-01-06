@@ -3,7 +3,7 @@
 
 {% block head %}
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'add_private_section_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'add_priv_section_style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'form_container_style.css' %}">
 
 {% endblock %}
@@ -58,7 +58,7 @@
 
         <div class="col-75">
             <input type="number" id="elevation-gain" name="input_elevation_gain">
-            <p>Uwaga, długość i przewyższenie prosimy zaokrąglać w dół do części całkowitej.</p>
+            <p class="input-info-below">Uwaga, długość i przewyższenie prosimy zaokrąglać w dół do części całkowitej.</p>
         </div>
     </div>
 
@@ -97,7 +97,7 @@
         <div id="defined-s-point">
             <div class="row">
                 <div class="col-25">
-                    <label for="start-point">Punkt</label>
+                    <label class="label-right" for="start-point">Punkt</label>
                 </div>
 
                 <div class="col-75">
@@ -113,7 +113,7 @@
         <div id="private-s-point" style="display: none;">
             <div class="row">
                  <div class="col-25">
-                    <label for="start-point-name">Nazwa</label>
+                    <label class="label-right" for="start-point-name">Nazwa</label>
                 </div>
                 <div class="col-75">
                     <input type="text" id="start-point-name" name="input_s_point_name">
@@ -122,7 +122,7 @@
 
             <div class="row">
                 <div class="col-25">
-                    <label for="start-point-name">Wysokość n.p.m.</label>
+                    <label class="label-right" for="start-point-name">Wysokość n.p.m.</label>
                 </div>
                 <div class="col-75">
                     <input type="text" id="start-point-height" name="input_s_point_height">
@@ -167,7 +167,7 @@
         <div id="defined-e-point">
             <div class="row">
                 <div class="col-25">
-                    <label for="end-point">Punkt</label>
+                    <label class="label-right" for="end-point">Punkt</label>
                 </div>
 
                 <div class="col-75">
@@ -183,7 +183,7 @@
         <div id="private-e-point" style="display: none;">
             <div class="row">
                  <div class="col-25">
-                    <label for="end-point-name">Nazwa</label>
+                    <label class="label-right" for="end-point-name">Nazwa</label>
                 </div>
                 <div class="col-75">
                     <input type="text" id="end-point-name" name="input_e_point_name">
@@ -192,7 +192,7 @@
 
             <div class="row">
                 <div class="col-25">
-                    <label for="end-point-name">Wysokość n.p.m.</label>
+                    <label class="label-right" for="end-point-name">Wysokość n.p.m.</label>
                 </div>
                 <div class="col-75">
                     <input type="text" id="end-point-height" name="input_e_point_height">

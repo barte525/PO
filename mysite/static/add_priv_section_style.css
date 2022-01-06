@@ -2,6 +2,6 @@ input[type=submit]{
   float: right;
 }
 
-.form-container {
-  padding-left: 25%;
+form{
+  padding-left: 5%;
 }

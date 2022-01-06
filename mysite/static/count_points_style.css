@@ -1,5 +1,28 @@
 input[type=submit] {
     position: relative;
     display: block;
-    margin : 0 auto;
+    margin : 30 auto;
+}
+
+.col-60 {
+  float: left;
+  width: 60%;
+  margin-top: 6px;
+}
+
+.col-40 {
+  float: left;
+  width: 40%;
+  margin-top: 6px;
+}
+
+#points-result-div {
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  text-align: center;
+}
+
+#points-result-p {
+  font-weight: bold;
 }
