@@ -15,11 +15,6 @@ label {
   display: inline-block;
 }
 
-.form-container {
-  padding-left: 25%;
-  padding-right: 20%;
-}
-
 .col-25 {
   float: left;
   width: 25%;
