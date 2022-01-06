@@ -3,7 +3,8 @@
 
 {% block head %}
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'count_points.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'form_container_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'count_points_style.css' %}">
 {% endblock %}
 
 {% block above_content %}
@@ -14,9 +15,10 @@
     <div class="form-container">
       <form method="POST">
           {% csrf_token %}
-          <div class="row">
+          <div class="row" >
               <input type="submit" value="Zatwierdź">
           </div>
+
         <div class="row">
             <div class="col-25">
                 <label class="label" for="mountain_range">Pasmo górskie</label>

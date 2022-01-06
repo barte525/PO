@@ -1,3 +1,5 @@
 input[type=submit] {
-    float: center;
+    position: relative;
+    display: block;
+    margin : 0 auto;
 }

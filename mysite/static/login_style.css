@@ -2,6 +2,10 @@
     margin-top: 5%;
 }
 
+button[type=submit]{
+  float: right;
+}
+
 .form-group input {
     width: 60%;
     margin-left: 20%;
@@ -12,10 +16,7 @@ main {
     padding: 10px;
     vertical-align: center;
 }
-input[type=submit] {
-     position: absolute;
-     left: 15%;
-}
+
 .text-danger {
     color: red;
 }
