@@ -1,30 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Odcinek zdefiniowany{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+                       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+                       crossorigin="anonymous">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'defined_segment.css' %}">
+
+{% endblock %}
+
+{% block above_content %}
+    <h1>Odcinek zdefiniowany</h1>
+{% endblock %}
+
+{% block content %}
 <form method="post">
+  {% csrf_token %}
   <div class="form-group">
-    <label for="exampleFormControlInput1">Email address</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    <label>Nazwa</label>
+    <input type="text" name="name" class="form-control" value={{segment.name}}>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Example select</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+    <label>Długość</label>
+    <input type="number" name="length" class="form-control" value={{segment.segment.length}}>
+  </div>
+  <div class="form-group">
+    <label>Punkty</label>
+    <input type="number" name="points" class="form-control" value={{segment.points}}>
+  </div>
+  <div class="form-group">
+    <label>Pasmo</label>
+    <select id="mountainRange" name="select_mountain_range">
+            {% for mountainRange in ranges %}
+              {% if segment.section.range.name == mountain_range.name %}
+                  <option selected id="{{mountainRange.id}}" name="mountainRangeList" value='{{mountainRange.id}}'>{{mountainRange.name}}</option>
+              {% else %}
+                  <option id="{{mountainRange.id}}" name="mountainRangeList" value='{{mountainRange.id}}'>{{mountainRange.name}}</option>
+              {% endif %}
+            {% endfor %}
     </select>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlSelect2">Example multiple select</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+    <label>Punkt początkowy</label>
+    <select id="startPoint" name="select_start_point">
+            {% for point in points %}
+              {% if segment.start_point.name == point.name %}
+                  <option selected id="{{point.id}}" name="pointsList" value='{{point.id}}'>{{point.name}}</option>
+              {% else %}
+                  <option id="{{point.id}}" name="pointsList" value='{{point.id}}'>{{point.name}}</option>
+              {% endif %}
+            {% endfor %}
     </select>
   </div>
   <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <label>Punkt końcowy</label>
+    <select id="endPoint" name="select_end_point">
+            {% for epoint in points %}
+              {% if segment.end_point.name == epoint.name %}
+                  <option selected id="{{epoint.id}}" name="pointsList" value='{{epoint.id}}'>{{epoint.name}}</option>
+              {% else %}
+                  <option id="{{epoint.id}}" name="pointsList" value='{{epoint.id}}'>{{epoint.name}}</option>
+              {% endif %}
+            {% endfor %}
+    </select>
   </div>
+  <button type="submit" name="update">Zaloguj</button>
+    <button type="submit" name="delete">Usuń</button>
 </form>
+{% endblock %}
