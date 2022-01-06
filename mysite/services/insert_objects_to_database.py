@@ -20,7 +20,7 @@ def insert_points_to_db():
 
 def insert_users_to_db():
    bartek = User.objects.create_user(email='bartek@gmail.com', password='Oo', name='Bartek', surname='Nowak')
-    Tourist(birth_date='2000-10-10', user=bartek).save()  # .route_set.all(), zeby dostac trasy turysty
+   Tourist(birth_date='2000-10-10', user=bartek).save()  # .route_set.all(), zeby dostac trasy turysty
 
 
 def insert_routes_to_db():
