@@ -1,4 +1,9 @@
-input[type=submit] {
+.form-container {
+  padding-left: 25%;
+  padding-right: 20%;
+}
+
+input[type=submit], button[type=submit]{
   float: right;
   padding: 5px 15px;
   border: solid;
@@ -9,7 +14,7 @@ input[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover, button[type=submit]:hover{
   background-color: #006e39;
   color: white;
 }

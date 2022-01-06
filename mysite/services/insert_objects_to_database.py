@@ -1,11 +1,9 @@
 from mysite.models.point import Point
 from mysite.models.user import User, Tourist
 from mysite.models.route import Route
-
-
-
 from mysite.models.range import Range
 from mysite.models.group import Group
+from mysite.models.segment import Segment, DefinedSegment, CustomSegment
 
 
 def insert_all():

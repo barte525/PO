@@ -1,0 +1,21 @@
+.form-container {
+    margin-top: 5%;
+}
+
+.form-group input {
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 10px;
+}
+
+main {
+    padding: 10px;
+    vertical-align: center;
+}
+input[type=submit] {
+     position: absolute;
+     left: 15%;
+}
+.text-danger {
+    color: red;
+}

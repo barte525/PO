@@ -23,3 +23,4 @@ class CustomSegment(models.Model):
     start_height = models.IntegerField()
     end_height = models.IntegerField()
     segment = models.ForeignKey(Segment, on_delete=models.CASCADE)
+
