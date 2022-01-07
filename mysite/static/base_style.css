@@ -3,7 +3,7 @@
   padding-right: 20%;
 }
 
-input[type=submit]{
+input[type=submit], .Zaloguj{
   padding: 5px 15px;
   border: solid;
   border-color: #08a157;
@@ -14,9 +14,13 @@ input[type=submit]{
   font-family: Tahoma, sans-serif;
 }
 
-input[type=submit]:hover{
+input[type=submit]:hover, .Zaloguj:hover{
   background-color: #006e39;
   color: white;
+}
+
+.Zaloguj {
+    float: left;
 }
 
 h1 {
