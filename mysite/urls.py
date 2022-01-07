@@ -30,7 +30,7 @@ urlpatterns = [
     path('get/', GetPoints.as_view()),
     path('login/', auth_views.LoginView.as_view(template_name="login.html")),
     path('add_private_section/', AddPrivateSection.as_view()),
-    path('count_points/', CountPoints.as_view()),
+    path('count_points/<int:id>', CountPoints.as_view()),
     path('view_segments/', ViewSegments.as_view()),
     path('profile/', ProfileView.as_view()),
     path('section/<str:name>', SegmentView.as_view())

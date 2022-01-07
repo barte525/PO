@@ -10,7 +10,7 @@ class CountPoints(View):
         return render(request, 'countpoints.html')
 
     def post(self, request):
-        points = 10
+        points =
         message_positive = "Gratulujemy zaangażowania i życzymy powodzenia w dalszym zdobywaniu szczytów!"
         message_zero = "Cieszymy się, że pragniesz zdobyć odznakę. \n Wprowadzaj przebyte trasy i podliczaj zdobyte punkty. Do dzieła!"
 
