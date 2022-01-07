@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}Odcinek zdefiniowany{% endblock %}
 {% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'defined_segment.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
                        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
                        crossorigin="anonymous">
-
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'defined_segment.css' %}">
 
 {% endblock %}
 
