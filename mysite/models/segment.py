@@ -9,7 +9,7 @@ class Segment(models.Model):
 
 
 class DefinedSegment(models.Model):
-    segment = models.ForeignKey(Segment, on_delete=models.CASCADE)
+    segment = models.ForeignKey(Segment, on_delete=models.CASCADE, related_name="defined_segment")
     points = models.IntegerField()
     start_point = models.ForeignKey(Point, on_delete=models.PROTECT, related_name='start_point')
     end_point = models.ForeignKey(Point, on_delete=models.PROTECT, related_name='end_point')
@@ -22,6 +22,6 @@ class CustomSegment(models.Model):
     end_name = models.CharField(max_length=50)
     start_height = models.IntegerField()
     end_height = models.IntegerField()
-    segment = models.ForeignKey(Segment, on_delete=models.CASCADE)
+    segment = models.ForeignKey(Segment, on_delete=models.CASCADE, related_name="custom_segment")
     name = models.CharField(max_length=100)
 

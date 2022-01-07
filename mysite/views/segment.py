@@ -26,7 +26,7 @@ class SegmentView(View):
             name = request.POST.get("name", "")
             segment = Segment.objects.filter(id=current_segment[0].segment.id)
             segment.update(range=range, length=length)
-            current_segment.update(end_point=end_point, start_point=start_point, points=points, name=name)
+            current_segment.update(end_point=end_point, start_point=start_point, points=points, name=name, segment=segment[0])
             return HttpResponse("updated")
         if "delete" in request.POST:
             current_segment[0].delete()

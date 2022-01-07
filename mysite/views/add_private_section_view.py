@@ -6,16 +6,18 @@ from django.http import HttpResponse
 from mysite.models.segment import CustomSegment, Segment
 from mysite.models.point import Point
 from mysite.models.range import Range
+from mysite.models.route import Route
 
 
 class AddPrivateSection(View):
-    def get(self, request):
+    def get(self, request, id):
         ranges = list(Range.objects.all())
         points = list(Point.objects.all())
         return render(request, 'addprivatesection.html', {'ranges': ranges, 'points': points})
 
-    def post(self, request):
-        msg_valid_point_name = "Długość nazwy punktu nie może być mmniejsza od 1 znaku i większa od 200 znaków."
+
+    def post(self, request, id):
+        msg_valid_point_name = "Długość nazwy punktu nie może być mniejsza od 1 znaku i większa od 200 znaków."
         msg_valid_segment_name = "Długość nazwy odcinka nie może być mmniejsza od 1 znaku i większa od 200 znaków."
         msg_valid_number = "Wprowadzona wartość liczbowa nie spełnia wymagań."
 
@@ -64,4 +66,5 @@ class AddPrivateSection(View):
 
         CustomSegment(segment=segment, start_name=start_name, start_height=start_height, end_height=end_height,
                       end_name=end_name, name=name, elevation=elevation).save()
+        Route.objects.get(id=id).segments.add(segment)
         return HttpResponse("Odcinek został zapisany w bazie.")
