@@ -20,3 +20,13 @@ input[type=submit] {
 .text-danger {
     color: red;
 }
+
+#delete-button {
+    margin-left: 80%;
+}
+
+.form-select {
+    margin-left: 20%;
+    width: 60%;
+    margin-top: 10px;
+}

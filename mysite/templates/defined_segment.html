@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
                        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
                        crossorigin="anonymous">
-
 {% endblock %}
 
 {% block above_content %}
@@ -14,57 +13,124 @@
 {% endblock %}
 
 {% block content %}
-<form method="post">
-  {% csrf_token %}
-  <div class="form-group">
-    <label>Nazwa</label>
-    <input type="text" name="name" class="form-control" value={{segment.name}}>
-  </div>
-  <div class="form-group">
-    <label>Długość</label>
-    <input type="number" name="length" class="form-control" value={{segment.segment.length}}>
-  </div>
-  <div class="form-group">
-    <label>Punkty</label>
-    <input type="number" name="points" class="form-control" value={{segment.points}}>
-  </div>
-  <div class="form-group">
-    <label>Pasmo</label>
-    <select id="mountainRange" name="select_mountain_range">
-            {% for mountainRange in ranges %}
-              {% if segment.section.range.name == mountain_range.name %}
-                  <option selected id="{{mountainRange.id}}" name="mountainRangeList" value='{{mountainRange.id}}'>{{mountainRange.name}}</option>
-              {% else %}
-                  <option id="{{mountainRange.id}}" name="mountainRangeList" value='{{mountainRange.id}}'>{{mountainRange.name}}</option>
-              {% endif %}
-            {% endfor %}
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Punkt początkowy</label>
-    <select id="startPoint" name="select_start_point">
-            {% for point in points %}
-              {% if segment.start_point.name == point.name %}
-                  <option selected id="{{point.id}}" name="pointsList" value='{{point.id}}'>{{point.name}}</option>
-              {% else %}
-                  <option id="{{point.id}}" name="pointsList" value='{{point.id}}'>{{point.name}}</option>
-              {% endif %}
-            {% endfor %}
-    </select>
-  </div>
-  <div class="form-group">
-    <label>Punkt końcowy</label>
-    <select id="endPoint" name="select_end_point">
-            {% for epoint in points %}
-              {% if segment.end_point.name == epoint.name %}
-                  <option selected id="{{epoint.id}}" name="pointsList" value='{{epoint.id}}'>{{epoint.name}}</option>
-              {% else %}
-                  <option id="{{epoint.id}}" name="pointsList" value='{{epoint.id}}'>{{epoint.name}}</option>
-              {% endif %}
-            {% endfor %}
-    </select>
-  </div>
-  <button type="submit" name="update">Zaloguj</button>
-    <button type="submit" name="delete">Usuń</button>
-</form>
+<div class="form-container">
+    <form method="post">
+      {% csrf_token %}
+        <div class="form-group row">
+            <label for="inputName" class="col-sm-2 col-form-label">Nazwa</label>
+            <div class="col-sm-10">
+                 <input type="text" id="inputName" name="name" class="form-control" value={{segment.name}}>
+            </div>
+        </div>
+<!--      <div class="form-group">-->
+<!--        <label for="name">Nazwa</label>-->
+<!--        <input type="text" id="name" name="name" class="form-control" value={{segment.name}}>-->
+<!--      </div>-->
+
+        <div class="form-group row">
+            <label for="inputLength" class="col-sm-2 col-form-label">Długość</label>
+            <div class="col-sm-10">
+                 <input type="number" id="inputLength" name="length" class="form-control" value={{segment.segment.length}}>
+            </div>
+        </div>
+<!--      <div class="form-group">-->
+<!--        <label for="length">Długość</label>-->
+<!--        <input type="number" id="length" name="length" class="form-control" value={{segment.segment.length}}>-->
+<!--      </div>-->
+
+        <div class="form-group row">
+            <label for="inputPoints" class="col-sm-2 col-form-label">Punkty</label>
+            <div class="col-sm-10">
+                  <input type="number" id="inputPoints" name="points" class="form-control" value={{segment.points}}>
+            </div>
+        </div>
+<!--      <div class="form-group">-->
+<!--        <label>Punkty</label>-->
+<!--        <input type="number" name="points" class="form-control" value={{segment.points}}>-->
+<!--      </div>-->
+
+        <div class="form-group row">
+            <label for="mountainRange" class="col-sm-2 col-form-label">Pasmo</label>
+            <div class="col-sm-10">
+                   <select id="mountainRange" name="select_mountain_range" class="form-control form-select">
+                    {% for mountainRange in ranges %}
+                      {% if segment.section.range.name == mountain_range.name %}
+                          <option selected id="{{mountainRange.id}}" name="mountainRangeList" value='{{mountainRange.id}}'>{{mountainRange.name}}</option>
+                      {% else %}
+                          <option id="{{mountainRange.id}}" name="mountainRangeList" value='{{mountainRange.id}}'>{{mountainRange.name}}</option>
+                      {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+<!--      <div class="form-group">-->
+<!--        <label>Pasmo</label>-->
+<!--        <select id="mountainRange" name="select_mountain_range">-->
+<!--                {% for mountainRange in ranges %}-->
+<!--                  {% if segment.section.range.name == mountain_range.name %}-->
+<!--                      <option selected id="{{mountainRange.id}}" name="mountainRangeList" value='{{mountainRange.id}}'>{{mountainRange.name}}</option>-->
+<!--                  {% else %}-->
+<!--                      <option id="{{mountainRange.id}}" name="mountainRangeList" value='{{mountainRange.id}}'>{{mountainRange.name}}</option>-->
+<!--                  {% endif %}-->
+<!--                {% endfor %}-->
+<!--        </select>-->
+<!--      </div>-->
+
+        <div class="form-group row">
+            <label for="startPoint" class="col-sm-2 col-form-label">Punkt początkowy</label>
+            <div class="col-sm-10">
+                   <select id="startPoint" name="select_start_point" class="form-control form-select">
+                        {% for point in points %}
+                        {% if segment.start_point.name == point.name %}
+                          <option selected id="{{point.id}}" name="pointsList" value='{{point.id}}'>{{point.name}}</option>
+                        {% else %}
+                          <option id="{{point.id}}" name="pointsList" value='{{point.id}}'>{{point.name}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+            </div>
+        </div>
+<!--      <div class="form-group">-->
+<!--        <label>Punkt początkowy</label>-->
+<!--        <select id="startPoint" name="select_start_point" class="form-control form-select">-->
+<!--                {% for point in points %}-->
+<!--                  {% if segment.start_point.name == point.name %}-->
+<!--                      <option selected id="{{point.id}}" name="pointsList" value='{{point.id}}'>{{point.name}}</option>-->
+<!--                  {% else %}-->
+<!--                      <option id="{{point.id}}" name="pointsList" value='{{point.id}}'>{{point.name}}</option>-->
+<!--                  {% endif %}-->
+<!--                {% endfor %}-->
+<!--        </select>-->
+<!--      </div>-->
+                <div class="form-group row">
+            <label for="endPoint" class="col-sm-2 col-form-label">Punkt końcowy</label>
+            <div class="col-sm-10">
+                   <select id="endPoint" name="select_end_point" class="form-control form-select">
+                        {% for epoint in points %}
+                        {% if segment.end_point.name == epoint.name %}
+                        <option selected id="{{epoint.id}}" name="pointsList" value='{{epoint.id}}'>{{epoint.name}}</option>
+                        {% else %}
+                        <option id="{{epoint.id}}" name="pointsList" value='{{epoint.id}}'>{{epoint.name}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+            </div>
+        </div>
+<!--      <div class="form-group">-->
+<!--        <label>Punkt końcowy</label>-->
+<!--        <select id="endPoint" name="select_end_point" class="form-control form-select">-->
+<!--                {% for epoint in points %}-->
+<!--                  {% if segment.end_point.name == epoint.name %}-->
+<!--                      <option selected id="{{epoint.id}}" name="pointsList" value='{{epoint.id}}'>{{epoint.name}}</option>-->
+<!--                  {% else %}-->
+<!--                      <option id="{{epoint.id}}" name="pointsList" value='{{epoint.id}}'>{{epoint.name}}</option>-->
+<!--                  {% endif %}-->
+<!--                {% endfor %}-->
+<!--        </select>-->
+<!--      </div>-->
+
+      <button id="submit-button" type="submit" name="update">Zaloguj</button>
+        <button id=delete-button" type="submit" name="delete">Usuń</button>
+    </form>
+</div>
 {% endblock %}
