@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Add private section{% endblock %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'view_segments_style.css' %}">
+
+{% endblock %}
+
+{% block above_content %}
+    <h1>Lista odcinków</h1>
+{% endblock %}
+
+{% block content %}
+<h2>Odcinki ustalone</h2>
+<table>
+     <tr>
+         <th>Nazwa</th>
+         <th>Pasmo</th>
+         <th>Długość</th>
+         <th>Punkt startowy</th>
+         <th>Punkt początkowy</th>
+
+    </tr>
+     {% for definedSegment in definedSegments %}
+        <tr>
+            <td>{{definedSegment.name}}</td>
+            <td>{{definedSegment.segment.range.name}}</td>
+            <td>{{definedSegment.segment.length}}</td>
+            <td>{{definedSegment.start_point.name}}; {{definedSegment.start_point.height}}m n.p.m.</td>
+            <td>{{definedSegment.end_point.name}}; {{definedSegment.end_point.height}}m n.p.m.</td>
+        </tr>
+
+    {% endfor %}
+</table>
+
+<br>
+
+<h2>Odcinki własne</h2>
+<table>
+     <tr>
+         <th>Nazwa</th>
+         <th>Pasmo</th>
+         <th>Długość</th>
+         <th>Punkt startowy</th>
+         <th>Punkt początkowy</th>
+
+    </tr>
+     {% for customSegment in customSegments %}
+        <tr>
+            <td>{{customSegment.name}}</td>
+            <td>{{customSegment.segment.range.name}}</td>
+            <td>{{customSegment.segment.length}}</td>
+            <td>{{customSegment.start_name}}; {{customSegment.start_height}}m n.p.m.</td>
+            <td>{{customSegment.end_name}}; {{customSegment.end_height}}m n.p.m.</td>
+        </tr>
+
+    {% endfor %}
+</table>
+{% endblock %}
