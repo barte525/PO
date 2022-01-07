@@ -15,6 +15,7 @@ class AddPrivateSection(View):
         points = list(Point.objects.all())
         return render(request, 'addprivatesection.html', {'ranges': ranges, 'points': points})
 
+
     def post(self, request, id):
         msg_valid_point_name = "Długość nazwy punktu nie może być mmniejsza od 1 znaku i większa od 200 znaków."
         msg_valid_segment_name = "Długość nazwy odcinka nie może być mmniejsza od 1 znaku i większa od 200 znaków."

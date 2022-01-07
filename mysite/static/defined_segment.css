@@ -21,11 +21,19 @@ input[type=submit] {
     color: red;
 }
 
+<<<<<<< HEAD
+=======
+#delete-button {
+    margin-left: 80%;
+}
+
+>>>>>>> ab2f75e82fd831c1d47fbe5c5ef2f20317818059
 .form-select {
     margin-left: 20%;
     width: 60%;
     margin-top: 10px;
 }
+<<<<<<< HEAD
 
 .save {
   padding: 5px 15px;
@@ -60,3 +68,5 @@ input[type=submit] {
   color: white;
 }
 
+=======
+>>>>>>> ab2f75e82fd831c1d47fbe5c5ef2f20317818059
