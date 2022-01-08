@@ -30,8 +30,8 @@ class CountPoints(View):
                 else:
                     elevation_gain = CustomSegment.objects.get(segment=segment.id).elevation
                     length = Segment.objects.get(id=segment.id).length
-
                     c_segment_points += self.count_points(elevation_gain, length)
+
             if c_segment_points > 50:
                 c_segment_points = 50
 

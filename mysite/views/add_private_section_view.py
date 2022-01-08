@@ -33,7 +33,7 @@ class AddPrivateSection(View):
             start_name = start_point.name
         else:
             start_height = request.POST.get("input_s_point_height")
-            if (not (start_height.is_numeric() and start_height >= 0)):
+            if (not (start_height.isnumeric() and int(start_height) >= 0)):
                 return HttpResponse(msg_valid_number)
 
             start_name = request.POST.get("input_s_point_name")
@@ -48,7 +48,7 @@ class AddPrivateSection(View):
             end_name = end_point.name
         else:
             end_height = request.POST.get("input_e_point_height")
-            if (not (end_height.is_numeric() and end_height >= 0)):
+            if (not (end_height.isnumeric() and int(end_height) >= 0)):
                 return HttpResponse(msg_valid_number)
 
             end_name = request.POST.get("input_e_point_name")
