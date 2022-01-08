@@ -13,6 +13,9 @@ class CountPoints(View):
         return render(request, 'countpoints.html')
 
     def post(self, request, id):
+        if not User.objects.filter(id=id).exists():
+            return HttpResponse("Błędne dane (id)")
+
         user = User.objects.get(id=id)
         tourist = Tourist.objects.get(user=user)
         routes = list(Route.objects.filter(tourist=tourist))
