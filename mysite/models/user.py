@@ -46,3 +46,6 @@ class Tourist(models.Model):
     birth_date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='t_user')
 
+
+class Admin(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='a_user')
