@@ -1,3 +1,5 @@
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mysite.settings'
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
