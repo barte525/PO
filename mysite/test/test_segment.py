@@ -51,7 +51,7 @@ class TestSegment(TestCase):
 
     def test_correct_update(self):
         response = SegmentView.update_segment(self.segment, 1, 1, 1, 1, 1, "new_test")
-        self.assertEqual(response, "updated")
+        self.assertEqual(response, "zaktualizowano")
         self.assertEqual(DefinedSegment.objects.get(name="new_test").name, "new_test")
         self.assertEqual(list(DefinedSegment.objects.filter(name="test")), [])
 

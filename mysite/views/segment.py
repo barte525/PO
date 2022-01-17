@@ -31,7 +31,7 @@ class SegmentView(View):
             return HttpResponse(get_error_message(messege))
         if "delete" in request.POST:
             current_segment[0].delete()
-            return HttpResponse("deleted")
+            return HttpResponse("usunieto")
 
     @staticmethod
     def update_segment(current_segment, length, end_point, start_point, range, points, name):
@@ -41,11 +41,10 @@ class SegmentView(View):
             return "Nie prawidłowa liczba punktów"
         if len(name) < 1 or len(name) > 50:
             return "Długość nazwy odcnika poza przedziałem <1,50>"
-
         if DefinedSegment.objects.filter(name=name).exists():
             return "Odcinek o podanej nazwie już istnieje"
         segment = Segment.objects.filter(id=current_segment[0].segment.id)
         segment.update(range=range, length=length)
         current_segment.update(end_point=end_point, start_point=start_point, points=points, name=name,
                                segment=segment[0])
-        return "updated"
+        return "zaktualizowano"

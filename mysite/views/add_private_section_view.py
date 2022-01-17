@@ -4,6 +4,7 @@ from mysite.models.segment import CustomSegment, Segment
 from mysite.models.point import Point
 from mysite.models.range import Range
 from mysite.models.route import Route
+from django.http import HttpResponse
 
 
 class AddPrivateSection(View):
@@ -25,8 +26,8 @@ class AddPrivateSection(View):
         point_type_e = request.POST.get("point_type_e")
         elevation = request.POST.get("input_elevation_gain")
         select_e_point = request.POST.get("select_end_point")
-        return self.create_segment(id, length, range_id, point_type_s, select_s_point, start_height, start_name,
-                                end_height, end_name, name, point_type_e, elevation, select_e_point)
+        return HttpResponse(self.create_segment(id, length, range_id, point_type_s, select_s_point, start_height, start_name,
+                                end_height, end_name, name, point_type_e, elevation, select_e_point))
 
     @staticmethod
     def create_segment(id, length, range_id, point_type_s, select_s_point, start_height, start_name,
