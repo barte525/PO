@@ -6,7 +6,7 @@ from mysite.models.point import Point
 
 class MyView(View):
     def get(self, request):
-        return HttpResponse('Nasz strona')
+        return HttpResponse('System do obsługi GOT PTTK')
 
 
 class SavePoints(View):

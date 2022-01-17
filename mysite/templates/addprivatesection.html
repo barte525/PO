@@ -22,7 +22,7 @@
         </div>
 
         <div class="col-75">
-          <select id="mountain_range" name="select_mountain_range">
+          <select id="mountain_range" required name="select_mountain_range">
             {% for mountain_range in ranges %}
             <option id="{{mountain_range.id}}" name="mountainRangeList" value='{{mountain_range.id}}'>{{mountain_range.name}}</option>
             {% endfor %}
@@ -36,7 +36,7 @@
         </div>
 
         <div class="col-75">
-            <input type="text" id="name" name="input_name" placeholder="Wprowadź nazwę trasy">
+            <input type="text" id="name" required name="input_name" placeholder="Wprowadź nazwę trasy">
         </div>
     </div>
 
@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-75">
-            <input type="number" id="length" name="input_length" min="1">
+            <input type="number" required id="length" name="input_length" min="1">
         </div>
 
     </div>
@@ -57,7 +57,7 @@
         </div>
 
         <div class="col-75">
-            <input type="number" id="elevation-gain" name="input_elevation_gain">
+            <input type="number" required id="elevation-gain" name="input_elevation_gain">
             <p class="input-info-below">Uwaga, długość i przewyższenie prosimy zaokrąglać w dół do części całkowitej.</p>
         </div>
     </div>
@@ -67,7 +67,6 @@
         <div class="col-vertical">
             <p class="label">Punkt początkowy</p>
             <p>Jaki rodzaj punktu wprowadzasz?</p>
-<!--            <label for="start-point">Punkt początkowy</label>-->
         </div>
 
         <div class="radio">
