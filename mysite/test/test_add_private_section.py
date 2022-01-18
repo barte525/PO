@@ -19,7 +19,7 @@ class TestAddPrivateSection(TestCase):
 
     def test_incorrect_height(self):
         response = AddPrivateSection.create_segment(self.route_id, "1", "1", "", "0", "-1", "test", "", "0", "-1", "test", "test", "10")
-        self.assertEqual(response, "Wprowadzona wartość liczbowa nie spełnia wymagań.")
+        self.assertEqual(response, "Wysokość n.p.m. punktu musi być liczbą większą lub równą 0.")
         self.assertEqual(list(self.route.segments.all()), [])
 
     def test_incorrect_point_name(self):
@@ -36,21 +36,21 @@ class TestAddPrivateSection(TestCase):
     def test_invalid_segment_name(self):
         response = AddPrivateSection.create_segment(self.route_id, "1", "1", "", "0", "1", "test", "", "0", "1",
                                                     "test", "", "10")
-        self.assertEqual(response, "Długość nazwy odcinka nie może być mmniejsza od 1 znaku i większa od 200 znaków.")
+        self.assertEqual(response, "Długość nazwy odcinka nie może być mniejsza od 1 znaku i większa od 200 znaków.")
         self.assertEqual(list(self.route.segments.all()), [])
         response = AddPrivateSection.create_segment(self.route_id, "1", "1", "", "0", "1", "test", "", "0", "1",
                                                     "test", "x"*201, "10")
-        self.assertEqual(response, "Długość nazwy odcinka nie może być mmniejsza od 1 znaku i większa od 200 znaków.")
+        self.assertEqual(response, "Długość nazwy odcinka nie może być mniejsza od 1 znaku i większa od 200 znaków.")
         self.assertEqual(list(self.route.segments.all()), [])
 
     def test_correct_create_custom_points(self):
         response = AddPrivateSection.create_segment(self.route_id, "1", "1", "", "0", "1", "test", "", "0", "1",
                                                     "test", "test1", "10")
-        self.assertEqual(response, "Odcinek został zapisany w bazie.")
+        self.assertEqual(response, "Odcinek o nazwie test1 został zapisany w bazie.")
         self.assertEqual(list(self.route.segments.all()), [CustomSegment.objects.get(name='test1').segment])
 
     def test_correct_create_defined_points(self):
         response = AddPrivateSection.create_segment(self.route_id, "1", "1", "defined_point_s", "1", "", "", "defined_point_e",
                                                     "2", "", "", "test2", "10")
-        self.assertEqual(response, "Odcinek został zapisany w bazie.")
+        self.assertEqual(response, "Odcinek o nazwie test2 został zapisany w bazie.")
         self.assertEqual(list(self.route.segments.all()), [CustomSegment.objects.get(name='test2').segment])

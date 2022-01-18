@@ -33,7 +33,7 @@ class AddPrivateSection(View):
     def create_segment(id, length, range_id, point_type_s, select_s_point, start_height, start_name,
                        point_type_e, select_e_point, end_height, end_name, name, elevation):
         msg_valid_point_name = "Długość nazwy punktu nie może być mniejsza od 1 znaku i większa od 200 znaków."
-        msg_valid_segment_name = "Długość nazwy odcinka nie może być mmniejsza od 1 znaku i większa od 200 znaków."
+        msg_valid_segment_name = "Długość nazwy odcinka nie może być mniejsza od 1 znaku i większa od 200 znaków."
         msg_valid_point_height = "Wysokość n.p.m. punktu musi być liczbą większą lub równą 0."
 
         name_length = len(name)
@@ -67,4 +67,4 @@ class AddPrivateSection(View):
         CustomSegment(segment=segment, start_name=start_name, start_height=start_height, end_height=end_height,
                       end_name=end_name, name=name, elevation=elevation).save()
         Route.objects.get(id=id).segments.add(segment)
-        return "Odcinek o naziwe " + name + " został zapisany w bazie."
+        return "Odcinek o nazwie " + name + " został zapisany w bazie."

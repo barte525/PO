@@ -27,30 +27,30 @@ class TestSegment(TestCase):
         self.ex_segment = segment
 
     def test_incorrect_length_update(self):
-        response = SegmentView.update_segment(self.segment, -1, 1, 1, 1, 1, "test")
-        self.assertEqual(response, "Nie prawidłowa długość")
+        response = SegmentView.update_segment(self.segment, -1, 1, 1, 1, 1, "test", "test")
+        self.assertEqual(response, "Nieprawidłowa długość")
         self.assertEqual(self.segment[0], DefinedSegment.objects.get(name="test"))
 
     def test_incorrect_points_update(self):
-        response = SegmentView.update_segment(self.segment, 1, 1, 1, 1, -1, "test")
-        self.assertEqual(response, "Nie prawidłowa liczba punktów")
+        response = SegmentView.update_segment(self.segment, 1, 1, 1, 1, -1, "test", "test")
+        self.assertEqual(response, "Nieprawidłowa liczba punktów")
         self.assertEqual(self.segment[0], DefinedSegment.objects.get(name="test"))
 
     def test_incorrect_name_length(self):
-        response = SegmentView.update_segment(self.segment, 1, 1, 1, 1, 1, "x" * 51)
-        self.assertEqual(response, "Długość nazwy odcnika poza przedziałem <1,50>")
+        response = SegmentView.update_segment(self.segment, 1, 1, 1, 1, 1, "x" * 51, "test")
+        self.assertEqual(response, "Długość nazwy odcinka poza przedziałem <1,50>")
         self.assertEqual(self.segment[0], DefinedSegment.objects.get(name="test"))
-        response = SegmentView.update_segment(self.segment, 1, 1, 1, 1, 1, "")
-        self.assertEqual(response, "Długość nazwy odcnika poza przedziałem <1,50>")
+        response = SegmentView.update_segment(self.segment, 1, 1, 1, 1, 1, "", "test")
+        self.assertEqual(response, "Długość nazwy odcinka poza przedziałem <1,50>")
         self.assertEqual(self.segment[0], DefinedSegment.objects.get(name="test"))
 
     def test_not_unique_name(self):
-        response = SegmentView.update_segment(self.segment, 1, 1, 1, 1, 1, "ex_test")
+        response = SegmentView.update_segment(self.segment, 1, 1, 1, 1, 1, "ex_test", "test")
         self.assertEqual(response, "Odcinek o podanej nazwie już istnieje")
         self.assertEqual(self.segment[0], DefinedSegment.objects.get(name="test"))
 
     def test_correct_update(self):
-        response = SegmentView.update_segment(self.segment, 1, 1, 1, 1, 1, "new_test")
+        response = SegmentView.update_segment(self.segment, 1, 1, 1, 1, 1, "new_test", "new_test")
         self.assertEqual(response, "zaktualizowano")
         self.assertEqual(DefinedSegment.objects.get(name="new_test").name, "new_test")
         self.assertEqual(list(DefinedSegment.objects.filter(name="test")), [])
