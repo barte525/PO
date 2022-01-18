@@ -31,7 +31,7 @@ class AddPrivateSection(View):
 
     @staticmethod
     def create_segment(id, length, range_id, point_type_s, select_s_point, start_height, start_name,
-                       end_height, end_name, name, point_type_e, elevation, select_e_point):
+                       point_type_e, select_e_point, end_height, end_name, name, elevation):
         msg_valid_point_name = "Długość nazwy punktu nie może być mniejsza od 1 znaku i większa od 200 znaków."
         msg_valid_segment_name = "Długość nazwy odcinka nie może być mmniejsza od 1 znaku i większa od 200 znaków."
         msg_valid_point_height = "Wysokość n.p.m. punktu musi być liczbą większą lub równą 0."

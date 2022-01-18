@@ -1,41 +1,24 @@
 from django.views import View
 from django.shortcuts import render
-from mysite.models.point import Point
-from mysite.models.range import Range
 from mysite.models.route import Route
 from mysite.models.segment import Segment, DefinedSegment, CustomSegment
-from mysite.models.user import User, Tourist
+from mysite.models.user import Tourist
 from django.http import HttpResponse
 
 
 class CountPoints(View):
-    def get(self, request, id):
+    def get(self, request):
         return render(request, 'countpoints.html')
 
-    def post(self, request, id):
-        if not User.objects.filter(id=id).exists():
-            return HttpResponse("Błędne dane (id)")
+    def post(self, request):
+        print(request.user.id)
+        if not Tourist.objects.filter(user=request.user.id).exists():
+            return HttpResponse("Uzytkownik nie jest turystą")
 
-        user = User.objects.get(id=id)
-        tourist = Tourist.objects.get(user=user)
+        tourist = Tourist.objects.get(user=request.user.id)
         routes = list(Route.objects.filter(tourist=tourist))
-        points = 0
 
-        for route in routes:
-            segments = route.segments.all()
-            c_segment_points = 0
-            for segment in segments:
-                if DefinedSegment.objects.filter(segment=segment.id).exists():
-                    points += DefinedSegment.objects.get(segment=segment.id).points
-                else:
-                    elevation_gain = CustomSegment.objects.get(segment=segment.id).elevation
-                    length = Segment.objects.get(id=segment.id).length
-                    c_segment_points += self.count_points(elevation_gain, length)
-
-            if c_segment_points > 50:
-                c_segment_points = 50
-
-            points += c_segment_points
+        points = self.count_all_points(routes)
 
         message_positive = "Gratulujemy zaangażowania i życzymy powodzenia w dalszym zdobywaniu szczytów!"
         message_zero = "Cieszymy się, że pragniesz zdobyć odznakę. \n Wprowadzaj przebyte trasy i podliczaj zdobyte punkty. Do dzieła!"
@@ -47,7 +30,28 @@ class CountPoints(View):
 
         return render(request, 'countpoints.html', {'points': points, 'message': message})
 
-    def count_points(self, elevation_gain, length):
+    @staticmethod
+    def count_all_points(routes):
+        points = 0
+        for route in routes:
+            segments = route.segments.all()
+            c_segment_points = 0
+            for segment in segments:
+                if DefinedSegment.objects.filter(segment=segment.id).exists():
+                    points += DefinedSegment.objects.get(segment=segment.id).points
+                else:
+                    elevation_gain = CustomSegment.objects.get(segment=segment.id).elevation
+                    length = Segment.objects.get(id=segment.id).length
+                    c_segment_points += CountPoints.count_points(elevation_gain, length)
+
+            if c_segment_points > 50:
+                c_segment_points = 50
+
+            points += c_segment_points
+        return points
+
+    @staticmethod
+    def count_points(elevation_gain, length):
         elevation_gain_points = elevation_gain // 100
         length_points = length // 1000
 
