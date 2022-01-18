@@ -26,22 +26,22 @@ class SegmentView(View):
             start_point = request.POST.get("select_start_point", "")
             range = request.POST.get("select_mountain_range", "")
             points = request.POST.get("points", "")
-            name = request.POST.get("name", "")
-            messege = self.update_segment(current_segment, length, end_point, start_point, range, points, name)
+            name_i = request.POST.get("name", "")
+            messege = self.update_segment(current_segment, length, end_point, start_point, range, points, name_i, name)
             return HttpResponse(get_error_message(messege))
         if "delete" in request.POST:
             current_segment[0].delete()
             return HttpResponse("usunieto")
 
     @staticmethod
-    def update_segment(current_segment, length, end_point, start_point, range, points, name):
+    def update_segment(current_segment, length, end_point, start_point, range, points, name_i, name):
         if int(length) <= 0:
-            return "Nie prawidłowa długość"
+            return "Nieprawidłowa długość"
         if int(points) <= 0:
-            return "Nie prawidłowa liczba punktów"
-        if len(name) < 1 or len(name) > 50:
-            return "Długość nazwy odcnika poza przedziałem <1,50>"
-        if DefinedSegment.objects.filter(name=name).exists():
+            return "Nieprawidłowa liczba punktów"
+        if len(name_i) < 1 or len(name_i) > 50:
+            return "Długość nazwy odcinka poza przedziałem <1,50>"
+        if DefinedSegment.objects.filter(name=name_i).exists() and name_i != name:
             return "Odcinek o podanej nazwie już istnieje"
         segment = Segment.objects.filter(id=current_segment[0].segment.id)
         segment.update(range=range, length=length)
