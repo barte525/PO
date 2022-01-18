@@ -35,9 +35,9 @@ class SegmentView(View):
 
     @staticmethod
     def update_segment(current_segment, length, end_point, start_point, range, points, name_i, name):
-        if int(length) <= 0:
+        if not length.isnumeric() or int(length) <= 0:
             return "Nieprawidłowa długość"
-        if int(points) <= 0:
+        if not points.isnumeric() or int(points) <= 0:
             return "Nieprawidłowa liczba punktów"
         if len(name_i) < 1 or len(name_i) > 50:
             return "Długość nazwy odcinka poza przedziałem <1,50>"
